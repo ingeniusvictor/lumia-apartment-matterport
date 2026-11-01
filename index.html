@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#141b29"/>
+  <title>L.U.M.I.A. · Companion Space / AP-02</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#141b29;color:#f2f6fa;font:15px system-ui,sans-serif}
+    #stage{position:absolute;inset:0}#stage canvas{display:block;width:100%;height:100%}
+    #hud{position:fixed;top:18px;left:18px;max-width:350px;padding:18px 20px;background:#111c30dd;border:1px solid #6e89a455;border-radius:14px;box-shadow:0 8px 35px #0005}
+    h1{font-size:16px;margin:0 0 5px;letter-spacing:.07em}p{margin:5px 0;line-height:1.4}
+    .muted{color:#bccbdf;font-size:13px}.note{color:#ffd59d}
+    #door{font-weight:700;color:#9ff0d7}
+    #err{position:fixed;right:16px;bottom:16px;color:#ffbdaf;background:#301c25d9;padding:10px;border-radius:8px;display:none}
+    @media(max-width:600px){#hud{left:8px;top:8px;right:8px;max-width:none;padding:12px}}
+  </style>
+</head>
+<body>
+  <div id="stage" aria-label="Prototipo 3D independiente del apartamento"></div>
+  <section id="hud">
+    <h1>L.U.M.I.A. · COMPANION SPACE</h1>
+    <p class="muted">AP-02 / habitación ficticia de laboratorio</p>
+    <p>Caminar: <strong>W A S D</strong> o <strong>flechas</strong></p>
+    <p>Puerta: <strong>E</strong> al acercarse</p>
+    <p id="door" aria-live="polite">Puerta: cerrada</p>
+    <p class="muted note">No representa el apartamento Matterport real ni utiliza su contenido.</p>
+  </section>
+  <div id="err" role="alert"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
