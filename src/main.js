@@ -1,10 +1,14 @@
 import * as THREE from 'three';
 import { createApartment } from './apartment/geometry.js';
+import { importAP03Scene, disposeImportedScene } from './apartment/importAP03.js';
 import { moveWithCollision, canInteractWithDoor } from './navigation/collision.js';
 
 const stage = document.getElementById('stage');
 const doorLabel = document.getElementById('door');
 const errorNode = document.getElementById('err');
+const importInput = document.getElementById('glb-import');
+const resetButton = document.getElementById('reset-scene');
+const importStatus = document.getElementById('import-status');
 try {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#25374d');
@@ -29,10 +33,56 @@ try {
   sun.shadow.camera.bottom = -9;
   scene.add(sun);
 
-  const { hinge, placeholder } = createApartment(scene);
+  const { root, hinge, placeholder } = createApartment(scene);
+  let importedScene = null;
   const player = { x: 0, z: 1.1 };
   let doorOpen = false;
   const pressed = new Set();
+
+  // AP-03 swaps only STATIC geometry. The working runtime door and test agent
+  // remain under Three.js control and keep the same world coordinates.
+  function restoreGreybox() {
+    if (importedScene) {
+      scene.remove(importedScene);
+      disposeImportedScene(importedScene);
+      importedScene = null;
+    }
+    if (hinge.parent !== root) root.add(hinge);
+    if (placeholder.parent !== root) root.add(placeholder);
+    root.visible = true;
+    importStatus.textContent = 'Escenario: AP-02 original (laboratorio)';
+    resetButton.disabled = true;
+  }
+  resetButton.addEventListener('click', restoreGreybox);
+  importInput.addEventListener('change', async () => {
+    const file = importInput.files?.[0];
+    if (!file) return;
+    importInput.disabled = true;
+    resetButton.disabled = true;
+    importStatus.textContent = 'Validando GLB local…';
+    try {
+      const candidate = await importAP03Scene(file);
+      // No destructive changes until import and geometry contract are verified.
+      if (importedScene) {
+        scene.remove(importedScene);
+        disposeImportedScene(importedScene);
+      }
+      root.remove(hinge);
+      root.remove(placeholder);
+      scene.add(hinge, placeholder);
+      root.visible = false;
+      importedScene = candidate;
+      scene.add(importedScene);
+      importStatus.textContent = 'Escenario: GLB de Blender (local, sin subida)';
+    } catch (error) {
+      importStatus.textContent = 'No se cargó el GLB: ' + String(error?.message ?? error);
+      console.warn('AP-03 GLB rechazado:', error);
+    } finally {
+      importInput.disabled = false;
+      resetButton.disabled = !importedScene;
+      importInput.value = '';
+    }
+  });
 
   window.addEventListener('keydown', (event) => {
     const key = event.key.toLowerCase();

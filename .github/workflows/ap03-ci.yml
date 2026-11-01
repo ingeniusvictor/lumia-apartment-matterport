@@ -1,0 +1,25 @@
+name: AP-02 / AP-03 · Apartment checks
+on:
+  push:
+    branches:
+      - feat/ap03-blender-glb-bridge
+  pull_request:
+    branches:
+      - feat/ap02-apartment-foundation
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert upstream vendor unchanged
+        run: test "$(git rev-parse HEAD:vendor/matterport-dl)" = "b53c7074f7d5ba652449480806bff5dcc9696e69"
+      - name: Check Blender script syntax
+        run: python3 -c "import ast, pathlib; ast.parse(pathlib.Path('tools/blender/ap03_create_room.py').read_text(encoding='utf-8'))"
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
