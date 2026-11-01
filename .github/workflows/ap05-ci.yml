@@ -1,0 +1,33 @@
+name: AP-05 authorized pilot intake checks
+on:
+  push:
+    branches:
+      - feat/ap05-authorized-pilot-import
+  pull_request:
+    branches:
+      - feat/ap04-multiroom-lab
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Upstream tree must remain immutable
+        run: test "$(git rev-parse HEAD:vendor/matterport-dl)" = "b53c7074f7d5ba652449480806bff5dcc9696e69"
+      - name: Python syntax gate
+        run: python3 -W error -m py_compile tools/blender/ap03_create_room.py tools/blender/ap04_create_multiroom.py tools/blender/ap05_import_authorized_obj.py
+      - name: Reject checked-in proprietary assets
+        shell: bash
+        run: |
+          if git ls-files | grep -E '^(local-export|assets/authorized-source|assets/optimized-glb|captures|downloads|private)/'; then
+            echo 'Local or restricted assets must not be checked into Git'; exit 1
+          fi
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
+      - name: Ensure three HTML targets exist
+        run: test -s dist/index.html && test -s dist/ap04.html && test -s dist/ap05.html

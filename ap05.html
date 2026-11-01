@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L.U.M.I.A. · AP-05 · Revisión local de geometría autorizada</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1d293a;color:#ecf2fa;font:14px system-ui,sans-serif}
+#view{position:absolute;inset:0}#view canvas{display:block;width:100%;height:100%}
+aside{position:fixed;top:14px;left:14px;width:min(380px,calc(100% - 28px));z-index:2;background:#111c2be8;border:1px solid #a3b5c34d;border-radius:14px;padding:17px 19px;box-shadow:0 8px 26px #0008}
+h1{font-size:15px;margin:0 0 7px}p{margin:8px 0;line-height:1.45}.small{font-size:12px;color:#b7c9dc}.warn{color:#ffcf9c}
+input{max-width:100%;font-size:12px;margin:5px 0}
+#status{overflow-wrap:anywhere;color:#b6e6db}#stats{font-size:12px;white-space:pre-line;line-height:1.6}
+a{color:#a5dcff}
+@media(max-width:650px){aside{max-height:75vh;overflow-y:auto}}
+</style></head>
+<body>
+<div id="view" aria-label="Visor local para inspección de modelos GLB autorizados"></div>
+<aside>
+ <h1>L.U.M.I.A. · AP-05 / Piloto autorizado</h1>
+ <p class="small">Inspección de geometría 3D. Este visor NO descarga modelos del enlace Matterport.</p>
+ <label for="pilot">Importar archivo .glb obtenido con permiso</label>
+ <input id="pilot" type="file" accept=".glb,model/gltf-binary"/>
+ <p id="status" role="status">Sin modelo cargado. No hay geometría real del piloto todavía.</p>
+ <p id="stats" class="small">Controles: arrastrar para girar, rueda para acercar, botón derecho para desplazar.</p>
+ <p class="small warn">Escala, orientación, puertas y colisiones NO verificadas. No usar navegación AP-04 sobre geometría no calibrada.</p>
+ <p class="small"><a href="/ap04.html">Volver a AP-04 multihabitación</a></p>
+</aside>
+<script type="module" src="/src/ap05/main.js"></script>
+</body></html>
