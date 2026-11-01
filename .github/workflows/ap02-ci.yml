@@ -1,0 +1,33 @@
+name: AP-02 · Apartment checks
+on:
+  push:
+    branches:
+      - feat/ap02-apartment-foundation
+  pull_request:
+    branches:
+      - research/ap01-upstream-baseline
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify upstream vendor tree has not changed
+        shell: bash
+        run: |
+          actual="$(git rev-parse HEAD:vendor/matterport-dl)"
+          expected="b53c7074f7d5ba652449480806bff5dcc9696e69"
+          echo "Actual vendor tree: $actual"
+          test "$actual" = "$expected"
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Test navigation
+        run: npm test
+      - name: Build apartment
+        run: npm run build
