@@ -29,7 +29,8 @@ test('outer bounds and furnishings block movement',()=>{
 });
 test('move cannot tunnel through lounge sofa',()=>{
  const end=moveAP04({x:-3,z:2.25},-5,0,l,open);
- assert.ok(end.x>-3.4,JSON.stringify(end));
+ assert.ok(end.x>-3.51&&end.x<-3.2,JSON.stringify(end));
+ assert.equal(isWalkableAP04(end.x,end.z,l,open),true);
 });
 test('nearest door selection and room labels',()=>{
  assert.equal(nearestDoorAP04({x:-.3,z:1},l)?.id,'salon');
