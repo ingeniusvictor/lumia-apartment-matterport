@@ -1,0 +1,27 @@
+name: AP-04 multiroom checks
+on:
+  push:
+    branches:
+      - feat/ap04-multiroom-lab
+  pull_request:
+    branches:
+      - feat/ap03-blender-glb-bridge
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm vendor is unchanged
+        run: test "$(git rev-parse HEAD:vendor/matterport-dl)" = "b53c7074f7d5ba652449480806bff5dcc9696e69"
+      - name: Check Python source
+        run: python3 -W error -m py_compile tools/blender/ap03_create_room.py tools/blender/ap04_create_multiroom.py
+      - run: npm install --no-audit --no-fund
+      - run: npm test
+      - run: npm run build
+      - name: Check both pages in output
+        run: test -s dist/index.html && test -s dist/ap04.html

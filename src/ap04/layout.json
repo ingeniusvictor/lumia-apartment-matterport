@@ -1,0 +1,474 @@
+{
+  "schema": "lumia-apartment-ap04-v1",
+  "units": "meters",
+  "spawn": {
+    "x": 0,
+    "z": 2
+  },
+  "rooms": [
+    {
+      "id": "hall",
+      "label": "Pasillo central",
+      "bounds": {
+        "minX": -1,
+        "maxX": 1,
+        "minZ": -6,
+        "maxZ": 4
+      },
+      "floorColor": "#c5bbac"
+    },
+    {
+      "id": "salon",
+      "label": "Sala",
+      "bounds": {
+        "minX": -6,
+        "maxX": -1,
+        "minZ": -2,
+        "maxZ": 4
+      },
+      "floorColor": "#c6b79e"
+    },
+    {
+      "id": "dormitorio",
+      "label": "Dormitorio",
+      "bounds": {
+        "minX": 1,
+        "maxX": 6,
+        "minZ": -2,
+        "maxZ": 4
+      },
+      "floorColor": "#b5b6ad"
+    },
+    {
+      "id": "estudio",
+      "label": "Estudio",
+      "bounds": {
+        "minX": -3,
+        "maxX": 3,
+        "minZ": -10,
+        "maxZ": -6
+      },
+      "floorColor": "#adafa8"
+    }
+  ],
+  "doors": [
+    {
+      "id": "salon",
+      "label": "Sala",
+      "axis": "x",
+      "x": -1,
+      "z": 1,
+      "width": 1.3,
+      "depth": 0.8,
+      "openAngle": 1.4
+    },
+    {
+      "id": "dormitorio",
+      "label": "Dormitorio",
+      "axis": "x",
+      "x": 1,
+      "z": 1,
+      "width": 1.3,
+      "depth": 0.8,
+      "openAngle": -1.4
+    },
+    {
+      "id": "estudio",
+      "label": "Estudio",
+      "axis": "z",
+      "x": 0,
+      "z": -6,
+      "width": 1.3,
+      "depth": 0.8,
+      "openAngle": -1.4
+    }
+  ],
+  "walls": [
+    {
+      "id": "wall_living_west",
+      "center": [
+        -6,
+        1.35,
+        1
+      ],
+      "size": [
+        0.12,
+        2.7,
+        6
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_living_north",
+      "center": [
+        -3.5,
+        1.35,
+        -2
+      ],
+      "size": [
+        5,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_living_south",
+      "center": [
+        -3.5,
+        1.35,
+        4
+      ],
+      "size": [
+        5,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_bed_east",
+      "center": [
+        6,
+        1.35,
+        1
+      ],
+      "size": [
+        0.12,
+        2.7,
+        6
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_bed_north",
+      "center": [
+        3.5,
+        1.35,
+        -2
+      ],
+      "size": [
+        5,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_bed_south",
+      "center": [
+        3.5,
+        1.35,
+        4
+      ],
+      "size": [
+        5,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_hall_entry",
+      "center": [
+        0,
+        1.35,
+        4
+      ],
+      "size": [
+        2,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_hall_west_north",
+      "center": [
+        -1,
+        1.35,
+        -4
+      ],
+      "size": [
+        0.12,
+        2.7,
+        4
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_hall_east_north",
+      "center": [
+        1,
+        1.35,
+        -4
+      ],
+      "size": [
+        0.12,
+        2.7,
+        4
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_salon_door_rear",
+      "center": [
+        -1,
+        1.35,
+        -0.825
+      ],
+      "size": [
+        0.12,
+        2.7,
+        2.35
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_salon_door_front",
+      "center": [
+        -1,
+        1.35,
+        2.825
+      ],
+      "size": [
+        0.12,
+        2.7,
+        2.35
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_dormitorio_door_rear",
+      "center": [
+        1,
+        1.35,
+        -0.825
+      ],
+      "size": [
+        0.12,
+        2.7,
+        2.35
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_dormitorio_door_front",
+      "center": [
+        1,
+        1.35,
+        2.825
+      ],
+      "size": [
+        0.12,
+        2.7,
+        2.35
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_studio_west",
+      "center": [
+        -3,
+        1.35,
+        -8
+      ],
+      "size": [
+        0.12,
+        2.7,
+        4
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_studio_east",
+      "center": [
+        3,
+        1.35,
+        -8
+      ],
+      "size": [
+        0.12,
+        2.7,
+        4
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_studio_back",
+      "center": [
+        0,
+        1.35,
+        -10
+      ],
+      "size": [
+        6,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_studio_front_l",
+      "center": [
+        -1.825,
+        1.35,
+        -6
+      ],
+      "size": [
+        2.35,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "wall_studio_front_r",
+      "center": [
+        1.825,
+        1.35,
+        -6
+      ],
+      "size": [
+        2.35,
+        2.7,
+        0.12
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "lintel_salon",
+      "center": [
+        -1,
+        2.5,
+        1
+      ],
+      "size": [
+        0.14,
+        0.4,
+        1.3
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "lintel_bedroom",
+      "center": [
+        1,
+        2.5,
+        1
+      ],
+      "size": [
+        0.14,
+        0.4,
+        1.3
+      ],
+      "color": "#b6c1cc"
+    },
+    {
+      "id": "lintel_studio",
+      "center": [
+        0,
+        2.5,
+        -6
+      ],
+      "size": [
+        1.3,
+        0.4,
+        0.14
+      ],
+      "color": "#b6c1cc"
+    }
+  ],
+  "furniture": [
+    {
+      "id": "sofa",
+      "room": "salon",
+      "center": [
+        -4.7,
+        0.42,
+        2.25
+      ],
+      "size": [
+        1.9,
+        0.84,
+        1.1
+      ],
+      "color": "#477b80"
+    },
+    {
+      "id": "coffee_table",
+      "room": "salon",
+      "center": [
+        -3,
+        0.42,
+        0
+      ],
+      "size": [
+        1.25,
+        0.84,
+        0.72
+      ],
+      "color": "#896647"
+    },
+    {
+      "id": "bed",
+      "room": "dormitorio",
+      "center": [
+        4.25,
+        0.35,
+        2.2
+      ],
+      "size": [
+        2.3,
+        0.7,
+        1.55
+      ],
+      "color": "#658da4"
+    },
+    {
+      "id": "wardrobe",
+      "room": "dormitorio",
+      "center": [
+        5.35,
+        1.05,
+        -0.85
+      ],
+      "size": [
+        0.9,
+        2.1,
+        1.3
+      ],
+      "color": "#9f8567"
+    },
+    {
+      "id": "desk",
+      "room": "estudio",
+      "center": [
+        -1.7,
+        0.55,
+        -8.7
+      ],
+      "size": [
+        1.85,
+        1.1,
+        0.78
+      ],
+      "color": "#897457"
+    },
+    {
+      "id": "chair",
+      "room": "estudio",
+      "center": [
+        0.4,
+        0.43,
+        -8.2
+      ],
+      "size": [
+        0.76,
+        0.86,
+        0.78
+      ],
+      "color": "#a98772"
+    }
+  ]
+}
