@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-"""AP-03: create a clean, Blender-editable laboratory apartment and export GLB.
+r"""AP-03: create a clean, Blender-editable laboratory apartment and export GLB.
 
 This is an ORIGINAL procedural room. It contains no Matterport assets.
 Requires Blender with the built-in glTF 2.0 exporter.
@@ -28,7 +28,6 @@ bpy.context.scene.collection.objects.link(root)
 def material(name, hexcode):
     rgb = [int(hexcode[i:i + 2], 16) / 255 for i in (1, 3, 5)]
     m = bpy.data.materials.new(name)
-    m.use_nodes = True
     m.diffuse_color = (*rgb, 1)
     bsdf = m.node_tree.nodes.get("Principled BSDF")
     if bsdf:
@@ -75,12 +74,17 @@ box("chair_back", (.8, .85, .12), (1.42, 1.04, -2.07), "#b79572")
 # Door and temporary agent stay in the Three.js runtime, not in this static GLB.
 bpy.context.scene.unit_settings.system = "METRIC"
 bpy.context.scene.unit_settings.scale_length = 1.0
-bpy.context.view_settings.view_transform = "Standard"
+bpy.context.scene.view_settings.view_transform = "Standard"
 
 blend = output / "ap03-apartment.blend"
 glb = output / "ap03-apartment.glb"
-bpy.ops.wm.save_as_mainfile(filepath=str(blend))
-bpy.ops.export_scene.gltf(filepath=str(glb), export_format="GLB", export_yup=True)
+save_result = bpy.ops.wm.save_as_mainfile(filepath=str(blend))
+if "FINISHED" not in save_result or not blend.is_file() or blend.stat().st_size == 0:
+    raise RuntimeError("AP03: Blender no pudo guardar el .blend correctamente")
+
+export_result = bpy.ops.export_scene.gltf(filepath=str(glb), export_format="GLB", export_yup=True)
+if "FINISHED" not in export_result or not glb.is_file() or glb.stat().st_size == 0:
+    raise RuntimeError("AP03: Blender no pudo exportar el .glb correctamente")
 
 manifest = {
     "project": "LUMIA Companion Space",
