@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <meta name="theme-color" content="#141b29"/>
-  <title>L.U.M.I.A. · Companion Space / AP-02</title>
+  <title>L.U.M.I.A. · Companion Space / AP-03</title>
   <style>
     *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#141b29;color:#f2f6fa;font:15px system-ui,sans-serif}
     #stage{position:absolute;inset:0}#stage canvas{display:block;width:100%;height:100%}
@@ -12,6 +12,12 @@
     h1{font-size:16px;margin:0 0 5px;letter-spacing:.07em}p{margin:5px 0;line-height:1.4}
     .muted{color:#bccbdf;font-size:13px}.note{color:#ffd59d}
     #door{font-weight:700;color:#9ff0d7}
+    #scene-tools{margin-top:12px;padding-top:10px;border-top:1px solid #8596ab55;display:grid;gap:7px}
+    #scene-tools label{font-size:13px;font-weight:650}
+    #scene-tools input{max-width:100%;font-size:12px}
+    #reset-scene{background:#324765;color:white;border:1px solid #94a6bf55;padding:7px 10px;border-radius:8px;cursor:pointer}
+    #reset-scene:disabled{opacity:.45;cursor:not-allowed}
+    #import-status{font-size:12px;color:#d8e6fb;overflow-wrap:anywhere}
     #err{position:fixed;right:16px;bottom:16px;color:#ffbdaf;background:#301c25d9;padding:10px;border-radius:8px;display:none}
     @media(max-width:600px){#hud{left:8px;top:8px;right:8px;max-width:none;padding:12px}}
   </style>
@@ -20,10 +26,16 @@
   <div id="stage" aria-label="Prototipo 3D independiente del apartamento"></div>
   <section id="hud">
     <h1>L.U.M.I.A. · COMPANION SPACE</h1>
-    <p class="muted">AP-02 / habitación ficticia de laboratorio</p>
+    <p class="muted">AP-03 / puente Blender → GLB · prueba local</p>
     <p>Caminar: <strong>W A S D</strong> o <strong>flechas</strong></p>
     <p>Puerta: <strong>E</strong> al acercarse</p>
     <p id="door" aria-live="polite">Puerta: cerrada</p>
+    <div id="scene-tools">
+      <label for="glb-import">Importar escenario AP-03 (.glb generado en Blender)</label>
+      <input id="glb-import" type="file" accept=".glb,model/gltf-binary"/>
+      <button id="reset-scene" type="button" disabled>Volver a habitación AP-02</button>
+      <p id="import-status" role="status">Escenario: AP-02 original (laboratorio)</p>
+    </div>
     <p class="muted note">No representa el apartamento Matterport real ni utiliza su contenido.</p>
   </section>
   <div id="err" role="alert"></div>

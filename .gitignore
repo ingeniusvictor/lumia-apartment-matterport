@@ -13,3 +13,8 @@ dist/
 /downloads/
 /private/
 /*.tar
+
+# AP-03 locally generated Blender & GLB outputs
+/local-export/
+*.blend1
+__pycache__/
